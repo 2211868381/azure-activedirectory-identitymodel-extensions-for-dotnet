@@ -27,6 +27,7 @@
 
 using System;
 using System.Xml;
+using Microsoft.IdentityModel.Tokens.Xml;
 using static Microsoft.IdentityModel.Logging.LogHelper;
 
 namespace Microsoft.IdentityModel.Xml
@@ -67,22 +68,14 @@ namespace Microsoft.IdentityModel.Xml
         }
 
         /// <summary>
-        /// Gets the <see cref="XmlTokenStream"/> that contains the XML nodes that were read.
-        /// </summary>
-        public XmlTokenStream TokenStream
-        {
-            get => _tokenStreamReader.XmlTokens;
-        }
-
-        /// <summary>
         /// Called after the root element has been completely read.
-        /// Attaches a <see cref="XmlTokenStreamReader"/> to the first Reference for future processing if
+        /// Attaches a <see cref="XmlTokenStream"/> to the first Reference for future processing if
         /// a signature was found.
         /// </summary>
         protected virtual void OnEndOfRootElement()
         {
             if (Signature != null)
-                Signature.SignedInfo.References[0].TokenStream = TokenStream;
+                Signature.SignedInfo.References[0].TokenStream = _tokenStreamReader.TokenStream;
         }
 
         /// <summary>
@@ -118,7 +111,7 @@ namespace Microsoft.IdentityModel.Xml
         }
 
         /// <summary>
-        /// Gets the <see cref="Xml.Signature"/> that was found inside the XML.
+        /// Gets the <see cref="Xml.Signature"/> that was found inside the <see cref="XmlReader"/>.
         /// </summary>
         /// <remarks><see cref="Xml.Signature"/> may be null.</remarks>
         public Signature Signature

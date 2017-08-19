@@ -38,26 +38,6 @@ namespace Microsoft.IdentityModel.Xml
     /// </summary>
     public static class XmlUtil
     {
-        private static Dictionary<byte, string> _hexDictionary = new Dictionary<byte, string>
-        {
-            { 0, "0" },
-            { 1, "1" },
-            { 2, "2" },
-            { 3, "3" },
-            { 4, "4" },
-            { 5, "5" },
-            { 6, "6" },
-            { 7, "7" },
-            { 8, "8" },
-            { 9, "9" },
-            { 10, "A" },
-            { 11, "B" },
-            { 12, "C" },
-            { 13, "D" },
-            { 14, "E" },
-            { 15, "F" }
-        };
-
         /// <summary>
         /// Throws if Reader is on an empty element.
         /// </summary>
@@ -146,25 +126,6 @@ namespace Microsoft.IdentityModel.Xml
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="bytes"></param>
-        /// <returns>Hex representation of bytes</returns>
-        public static string GenerateHexString(byte[] bytes)
-        {
-            var stringBuilder = new StringBuilder();
-
-            foreach(var b in bytes)
-            {
-                stringBuilder.Append(_hexDictionary[(byte)(b >> 4)]);
-                stringBuilder.Append(_hexDictionary[(byte)(b & (byte)0x0F)]);
-            }
-
-            return stringBuilder.ToString();
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
         public static XmlQualifiedName GetXsiType(XmlReader reader)
@@ -205,7 +166,7 @@ namespace Microsoft.IdentityModel.Xml
         /// <param name="element"></param>
         /// <param name="attribute"></param>
         /// <returns></returns>
-        internal static Exception OnRequiredAttributeMissing(string element, string attribute)
+        public static Exception OnRequiredAttributeMissing(string element, string attribute)
         {
             return LogExceptionMessage(new XmlReadException(FormatInvariant(LogMessages.IDX21013, element, attribute)));
         }

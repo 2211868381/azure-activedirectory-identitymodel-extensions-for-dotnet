@@ -28,6 +28,7 @@
 using System;
 using System.Security.Cryptography;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens.Xml;
 
 namespace Microsoft.IdentityModel.Tokens
 {

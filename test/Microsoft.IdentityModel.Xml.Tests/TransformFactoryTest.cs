@@ -27,10 +27,9 @@
 
 using System;
 using Microsoft.IdentityModel.Tests;
-using Microsoft.IdentityModel.Tokens;
 using Xunit;
 
-namespace Microsoft.IdentityModel.Xml.Tests
+namespace Microsoft.IdentityModel.Tokens.Xml.Tests
 {
     public class TransformFactoryTest
     {

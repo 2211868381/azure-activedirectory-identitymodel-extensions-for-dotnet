@@ -30,7 +30,7 @@ using System.Collections.Generic;
 using System.Xml;
 using static Microsoft.IdentityModel.Logging.LogHelper;
 
-namespace Microsoft.IdentityModel.Xml
+namespace Microsoft.IdentityModel.Tokens.Xml
 {
     internal class XmlTokenStreamWriter
     {
@@ -145,7 +145,7 @@ namespace Microsoft.IdentityModel.Xml
                 throw LogExceptionMessage(new ArgumentNullException(nameof(writer)));
 
             if (!MoveToFirst())
-                XmlUtil.LogWriteException("XmlTokenBufferIsEmpty");
+                throw LogExceptionMessage(new ArgumentException("XmlTokenBufferIsEmpty"));
 
             int depth = 0;
             int recordedDepth = -1;

@@ -29,7 +29,7 @@ using System;
 using System.Xml;
 using static Microsoft.IdentityModel.Logging.LogHelper;
 
-namespace Microsoft.IdentityModel.Xml
+namespace Microsoft.IdentityModel.Tokens.Xml
 {
     /// <summary>
     /// Class wraps a given reader and delegates all XmlDictionaryReader calls 
@@ -235,7 +235,7 @@ namespace Microsoft.IdentityModel.Xml
             get => _innerReader.Prefix;
         }
 
-#if DESKTOPNET45
+#if NET45 || NET451
         // TODO - replacement on CORE
         /// <summary>
         /// Gets the quotation mark character used to enclose the attribute node. (" or ')
@@ -285,7 +285,7 @@ namespace Microsoft.IdentityModel.Xml
             get => _innerReader.XmlSpace;
         }
 
-#if DESKTOPNET45
+#if NET45 || NET451
         /// <summary>
         /// Closes the reader and changes the System.Xml.XmlReader.ReadState
         /// to Closed.

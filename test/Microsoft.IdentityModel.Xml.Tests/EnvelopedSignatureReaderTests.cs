@@ -42,7 +42,7 @@ namespace Microsoft.IdentityModel.Xml.Tests
         {
             var type = typeof(EnvelopedSignatureReader);
             var properties = type.GetProperties();
-            Assert.True(properties.Length == 35, $"Number of properties has changed from 35 to: {properties.Length}, adjust tests");
+            Assert.True(properties.Length == 34, $"Number of properties has changed from 34 to: {properties.Length}, adjust tests");
 
             var reader = XmlUtilities.CreateEnvelopedSignatureReader(Default.OuterXml);
             var defaultSerializer = reader.Serializer;
