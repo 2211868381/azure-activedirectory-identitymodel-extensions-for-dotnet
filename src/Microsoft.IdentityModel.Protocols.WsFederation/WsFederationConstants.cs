@@ -145,6 +145,21 @@ namespace Microsoft.IdentityModel.Protocols.WsFederation
             public const string Signing = "signing";
         }
 
+        /// <summary>
+        /// xmlns string.
+        /// </summary>
+        public static string Xmlns = "xmlns";
+
+        /// <summary>
+        /// Sub namespace names.
+        /// </summary>
+        public static class NamespaceName
+        {
+            public const string Fed = "fed";
+            public const string Xsi = "xsi";
+            public const string Wsa = "wsa";
+        }
+
         #pragma warning restore 1591
     }
 }
