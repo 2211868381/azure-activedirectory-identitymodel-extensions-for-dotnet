@@ -284,7 +284,7 @@ namespace Microsoft.IdentityModel.Protocols.WsFederation
         /// </summary>
         /// <param name="writer">The <see cref="XmlWriter"/> used to write the configuration content.</param>
         /// <param name="configuration">The <see cref="WsFederationConfiguration"/> provided.</param>
-        /// <exception cref="ArgumentNullException">if writer or configuration parameter is missing.</exception>
+        /// <exception cref="ArgumentNullException">if <paramref name="writer"/> or <paramref name="configuration"/> parameter is missing.</exception>
         /// <exception cref="XmlWriteException">if error occurs when writing metadata.</exception>
         public void WriteMetadata(XmlWriter writer, WsFederationConfiguration configuration)
         {
@@ -313,9 +313,9 @@ namespace Microsoft.IdentityModel.Protocols.WsFederation
 
             // <RoleDescriptor>
             writer.WriteStartElement(Elements.RoleDescriptor);
-            writer.WriteAttributeString(Xmlns, NamespaceName.Xsi, null, XmlSignatureConstants.XmlSchemaNamespace);
-            writer.WriteAttributeString(Xmlns, NamespaceName.Fed, null, Namespaces.FederationNamespace);
-            writer.WriteAttributeString(NamespaceName.Xsi, Attributes.Type, null, NamespaceName.Fed + ":" + Types.SecurityTokenServiceType);
+            writer.WriteAttributeString(Xmlns, Prefixes.Xsi, null, XmlSignatureConstants.XmlSchemaNamespace);
+            writer.WriteAttributeString(Xmlns, Prefixes.Fed, null, Namespaces.FederationNamespace);
+            writer.WriteAttributeString(Prefixes.Xsi, Attributes.Type, null, Prefixes.Fed + ":" + Types.SecurityTokenServiceType);
 
             // write the key infos
             if (configuration.KeyInfos != null)
@@ -335,7 +335,7 @@ namespace Microsoft.IdentityModel.Protocols.WsFederation
             writer.WriteStartElement(Elements.SecurityTokenEndpoint, Namespaces.FederationNamespace);
 
             // <wsa:EndpointReference xmlns:wsa=""http://www.w3.org/2005/08/addressing"">
-            writer.WriteStartElement(NamespaceName.Wsa, Elements.EndpointReference, Namespaces.AddressingNamspace);
+            writer.WriteStartElement(Prefixes.Wsa, Elements.EndpointReference, Namespaces.AddressingNamspace);
 
             // <wsa:Address>
             writer.WriteStartElement(Elements.Address, Namespaces.AddressingNamspace);

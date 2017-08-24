@@ -151,9 +151,9 @@ namespace Microsoft.IdentityModel.Protocols.WsFederation
         public static string Xmlns = "xmlns";
 
         /// <summary>
-        /// Sub namespace names.
+        /// Prefix names.
         /// </summary>
-        public static class NamespaceName
+        public static class Prefixes
         {
             public const string Fed = "fed";
             public const string Xsi = "xsi";
