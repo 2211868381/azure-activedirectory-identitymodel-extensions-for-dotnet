@@ -39,17 +39,25 @@ namespace Microsoft.IdentityModel.Protocols.OpenIdConnect
     /// </summary>
     public class OpenIdConnectMessage : AuthenticationProtocolMessage
     {
-        private const string _skuTelemetryValue = "ID_NET";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenIdConnectMessage"/> class.
         /// </summary>
-        public OpenIdConnectMessage() { }
+        public OpenIdConnectMessage()
+        {
+#if NET45
+            SkuTelemetryValue = "ID_NET45";
+#elif NET451
+            SkuTelemetryValue = "ID_NET451";
+#elif NETSTANDARD1_4
+            SkuTelemetryValue = "ID_NETSTANDARD1_4";
+#endif
+        }
 
         /// <summary>
         /// Initializes an instance of <see cref="OpenIdConnectMessage"/> class with a json string.
         /// </summary>
-        public OpenIdConnectMessage(string json)
+        public OpenIdConnectMessage(string json): this()
         {
             if (string.IsNullOrEmpty(json))
                 throw LogHelper.LogArgumentNullException("json");
@@ -70,7 +78,7 @@ namespace Microsoft.IdentityModel.Protocols.OpenIdConnect
         /// </summary>
         /// <param name="other"> an <see cref="OpenIdConnectMessage"/> to copy.</param>
         /// <exception cref="ArgumentNullException">If 'other' is null.</exception>
-        protected OpenIdConnectMessage(OpenIdConnectMessage other)
+        protected OpenIdConnectMessage(OpenIdConnectMessage other): this()
         {
             if (other == null)
                 throw LogHelper.LogArgumentNullException("other");
@@ -91,7 +99,7 @@ namespace Microsoft.IdentityModel.Protocols.OpenIdConnect
         /// Initializes a new instance of the <see cref="OpenIdConnectMessage"/> class.
         /// </summary>
         /// <param name="nameValueCollection">Collection of key value pairs.</param>
-        public OpenIdConnectMessage(NameValueCollection nameValueCollection)
+        public OpenIdConnectMessage(NameValueCollection nameValueCollection): this()
         {
             if (nameValueCollection == null)
                 throw LogHelper.LogArgumentNullException("nameValueCollection");
@@ -109,7 +117,7 @@ namespace Microsoft.IdentityModel.Protocols.OpenIdConnect
         /// Initializes a new instance of the <see cref="OpenIdConnectMessage"/> class.
         /// </summary>
         /// <param name="parameters">Enumeration of key value pairs.</param>        
-        public OpenIdConnectMessage(IEnumerable<KeyValuePair<string, string[]>> parameters)
+        public OpenIdConnectMessage(IEnumerable<KeyValuePair<string, string[]>> parameters): this()
         {
             if (parameters == null)
                 throw LogHelper.LogArgumentNullException("parameters");
@@ -134,7 +142,7 @@ namespace Microsoft.IdentityModel.Protocols.OpenIdConnect
         /// Initializes a new instance of the <see cref="OpenIdConnectMessage"/> class.
         /// </summary>
         /// <param name="json">the json object from which the instance is created.</param>
-        public OpenIdConnectMessage(JObject json)
+        public OpenIdConnectMessage(JObject json): this()
         {
             SetJsonParameters(json);
         }
@@ -194,7 +202,7 @@ namespace Microsoft.IdentityModel.Protocols.OpenIdConnect
         {
             if (this.EnableTelemetryParameters)
             {
-                clonedMessage.SetParameter(OpenIdConnectParameterNames.SkuTelemetry, _skuTelemetryValue);
+                clonedMessage.SetParameter(OpenIdConnectParameterNames.SkuTelemetry, SkuTelemetryValue);
                 clonedMessage.SetParameter(OpenIdConnectParameterNames.VersionTelemetry, typeof(OpenIdConnectMessage).GetTypeInfo().Assembly.GetName().Version.ToString());
             }
         }
@@ -533,6 +541,11 @@ namespace Microsoft.IdentityModel.Protocols.OpenIdConnect
             get { return GetParameter(OpenIdConnectParameterNames.Sid); }
             set { SetParameter(OpenIdConnectParameterNames.Sid, value); }
         }
+
+        /// <summary>
+        /// Gets 'skuTelemetryValue'.
+        /// </summary>
+        public string SkuTelemetryValue { get; }
 
         /// <summary>
         /// Gets or sets 'state'.
