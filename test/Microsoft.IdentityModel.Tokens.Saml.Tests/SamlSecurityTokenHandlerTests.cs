@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
+using System.Text;
 using System.Xml;
 using Microsoft.IdentityModel.Tests;
 using Microsoft.IdentityModel.Xml;
@@ -315,6 +316,32 @@ namespace Microsoft.IdentityModel.Tokens.Saml.Tests
             ClaimsPrincipal retVal = null;
             try
             {
+                //if (theoryData.TestId.Contains("IssuerSigningKey set"))
+                //{
+                //    DateTime notBefore = DateTime.UtcNow;
+                //    DateTime expires = notBefore + TimeSpan.FromDays(1);
+                //    SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
+                //    {
+                //        SigningCredentials = Default.AsymmetricSigningCredentials,
+                //        Audience = Default.Audience,
+                //        NotBefore = notBefore,
+                //        Expires = expires,
+                //        Issuer = Default.Issuer,
+                //        Subject = new ClaimsIdentity(ClaimSets.DefaultClaims.GetRange(0, 8))
+                //};
+                //    var token = theoryData.Handler.CreateToken(descriptor);
+                //    var samlToken = token as SamlSecurityToken;
+                   
+                //    var memoryStream = new MemoryStream();
+                //    var writer = XmlDictionaryWriter.CreateTextWriter(memoryStream, Encoding.UTF8, false);
+                //    new SamlSerializer().WriteAssertion(writer, samlToken.Assertion);
+                //    writer.Flush();
+                //    var xml = Encoding.UTF8.GetString(memoryStream.ToArray());
+
+                //    var samlTokenHandler = theoryData.Handler as SamlSecurityTokenHandler;
+                //    var result = samlTokenHandler.ValidateToken(xml, theoryData.ValidationParameters, out SecurityToken vtoken);
+                //}                
+
                 retVal = (theoryData.Handler as SamlSecurityTokenHandler).ValidateToken(theoryData.Token, theoryData.ValidationParameters, out SecurityToken validatedToken);
                 theoryData.ExpectedException.ProcessNoException();
             }
@@ -461,7 +488,55 @@ namespace Microsoft.IdentityModel.Tokens.Saml.Tests
                         TestId = nameof(ReferenceTokens.SamlToken_NoAttributes),
                         Token = ReferenceTokens.SamlToken_NoAttributes,
                         ValidationParameters = new TokenValidationParameters(),
-                    }
+                    },
+                    new SamlTheoryData
+                    {
+                        Handler = new SamlSecurityTokenHandler(),
+                        TestId = $"{nameof(ReferenceTokens.SamlToken_Valid)} IssuerSigningKey set",
+                        Token = ReferenceTokens.SamlToken_Valid,
+                        ValidationParameters = new TokenValidationParameters
+                        {
+                            IssuerSigningKey = KeyingMaterial.DefaultX509SigningCreds_2048_RsaSha2_Sha2.Key,//ReferenceXml.DefaultAADSigningKey,
+                            ValidateIssuer = false,
+                            ValidateAudience = false,
+                            ValidateLifetime = false,
+                        }
+                    },
+                    new SamlTheoryData
+                    {
+                        Handler = new SamlSecurityTokenHandler(),
+                        TestId = nameof(ReferenceTokens.SamlToken_Valid_Spaces_Added),
+                        Token = ReferenceTokens.SamlToken_Valid_Spaces_Added,
+                        ValidationParameters = new TokenValidationParameters
+                        {
+                            IssuerSigningKey = KeyingMaterial.DefaultX509SigningCreds_2048_RsaSha2_Sha2.Key,
+                            ValidateIssuer = false,
+                            ValidateAudience = false,
+                            ValidateLifetime = false,
+                        }
+                    },
+                    new SamlTheoryData
+                    {
+                        ExpectedException = ExpectedException.SecurityTokenSignatureKeyNotFoundException("IDX10501:"),
+                        Handler = new SamlSecurityTokenHandler(),
+                        TestId = nameof(ReferenceTokens.SamlToken_Formated),
+                        Token = ReferenceTokens.SamlToken_Formated,
+                        ValidationParameters = new TokenValidationParameters
+                        {
+                            IssuerSigningKey = KeyingMaterial.DefaultX509SigningCreds_2048_RsaSha2_Sha2.Key,
+                        }
+                    },
+                    new SamlTheoryData
+                    {
+                        ExpectedException = ExpectedException.SecurityTokenInvalidSignatureException("IDX10503:"),
+                        Handler = new SamlSecurityTokenHandler(),
+                        TestId = nameof(ReferenceTokens.SamlToken_AttributeTampered),
+                        Token = ReferenceTokens.SamlToken_AttributeTampered,
+                        ValidationParameters = new TokenValidationParameters
+                        {
+                            IssuerSigningKey = KeyingMaterial.DefaultX509SigningCreds_2048_RsaSha2_Sha2.Key,
+                        }
+                    },
                 };
             }
         }
