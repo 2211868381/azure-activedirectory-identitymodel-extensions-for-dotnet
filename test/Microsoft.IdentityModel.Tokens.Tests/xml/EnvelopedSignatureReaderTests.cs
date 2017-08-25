@@ -29,14 +29,14 @@ using System;
 using Microsoft.IdentityModel.Tests;
 using Xunit;
 using System.Collections.Generic;
+using Microsoft.IdentityModel.Xml;
 
-namespace Microsoft.IdentityModel.Xml.Tests
+namespace Microsoft.IdentityModel.Tokens.Xml.Tests
 {
 #pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
 
     public class EnvelopedSignatureReaderTests
     {
-
         [Fact]
         public void GetSets()
         {

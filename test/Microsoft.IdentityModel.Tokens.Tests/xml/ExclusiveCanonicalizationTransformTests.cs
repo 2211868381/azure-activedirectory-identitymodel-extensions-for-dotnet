@@ -29,10 +29,9 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Microsoft.IdentityModel.Tests;
-using Microsoft.IdentityModel.Tokens.Xml;
 using Xunit;
 
-namespace Microsoft.IdentityModel.Xml.Tests
+namespace Microsoft.IdentityModel.Tokens.Xml.Tests
 {
     public class ExclusiveCanonicalizationTransformTests
     {
