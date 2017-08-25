@@ -34,7 +34,7 @@ namespace Microsoft.IdentityModel.Xml
 {
     /// <summary>
     /// Wraps a <see cref="XmlReader"/> pointing to a root element of XML that may contain a signature.
-    /// If a &lt; is found, <see cref="Signature"/> will be populated and <see cref="SignedInfo.References"/> will
+    /// If a Signature element is found, a <see cref="Signature"/> will be populated and <see cref="SignedInfo.References"/> will
     /// have <see cref="XmlTokenStream"/> set for future validation.
     /// </summary>
     public class EnvelopedSignatureReader : DelegatingXmlDictionaryReader

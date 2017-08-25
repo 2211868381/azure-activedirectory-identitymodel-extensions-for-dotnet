@@ -35,7 +35,6 @@ namespace Microsoft.IdentityModel.Tokens.Xml.Tests
     {
 #pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [Theory, MemberData("GetTransformTestTheoryData")]
-#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         public void GetTransformTest(TransformTheoryData theoryData)
         {
             TestUtilities.WriteHeader($"{this}.GetTransformTest", theoryData);
@@ -73,9 +72,7 @@ namespace Microsoft.IdentityModel.Tokens.Xml.Tests
             };
         }
 
-#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
         [Theory, MemberData("GetCanonicalizingTransformTestTheoryData")]
-#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
         public void GetCanonicalizingTransformTest(TransformTheoryData theoryData)
         {
             TestUtilities.WriteHeader($"{this}.GetCanonicalizingTransformTest", theoryData);
@@ -117,6 +114,7 @@ namespace Microsoft.IdentityModel.Tokens.Xml.Tests
                 }
             };
         }
+#pragma warning restore CS3016 // Arrays as attribute arguments is not CLS-compliant
     }
 
     public class TransformTheoryData : TheoryDataBase
