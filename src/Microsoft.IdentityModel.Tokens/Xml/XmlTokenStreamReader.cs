@@ -27,6 +27,7 @@
 
 using System;
 using System.Xml;
+using static Microsoft.IdentityModel.Logging.LogHelper;
 
 namespace Microsoft.IdentityModel.Tokens.Xml
 {
