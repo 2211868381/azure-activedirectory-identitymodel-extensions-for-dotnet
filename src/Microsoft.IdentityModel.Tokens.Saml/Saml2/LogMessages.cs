@@ -34,12 +34,9 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     internal static class LogMessages
     {
 #pragma warning disable 1591
-
         // token validation
         internal const string IDX10400 = "IDX10400: The '{0}', can only process SecurityTokens of type: '{1}'. The SecurityToken received is of type: '{2}'.";
-
         internal const string IDX14001 = "IDX14001: A SAML2 assertion that specifies an AuthenticationContext DeclarationReference is not supported.To handle DeclarationReference, extend the Saml2SecurityTokenHandler and override ProcessAuthenticationStatement.";
-
 
         // Saml2SecurityTokenHandler logging - IDX14501 - 145999
         internal const string IDX11070 = "IDX11070: The '{0}', can only process SecurityTokens of type: '{1}'. The SecurityToken received is of type: '{2}'.";
@@ -53,7 +50,6 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
         internal const string IDX10513 = "IDX10513: NotBefore '{0}', is after NotOnOrAfter '{1}'.";
         internal const string IDX10514 = "IDX10514: NotOnOrAfter '{0}', is before NotBefore '{1}'.";
         internal const string IDX10515 = "IDX10515: SamlId value threw on XmlConvert.VerifyNCName. value: '{0}'";
-
 
         // SamlSerializing reading
         internal const string IDX11101 = "IDX11101: Creating Saml2SecurityToken: Issuer: '{0}', Audience: '{1}'";
@@ -119,7 +115,6 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
         internal const string IDX11900 = "IDX11900: Unable to write Saml2Assertion: {0} is required, {1} is null or empty.";
         internal const string IDX11901 = "IDX11901: Unable to write Saml2Assertion: {0}.{1} is empty. This statement must contain at least one Action.";
         internal const string IDX11902 = "IDX11902: Unable to write Saml2Assertion: Saml2Evidence must have at least one assertion or assertion reference.";
-
 #pragma warning restore 1591
     }
 }

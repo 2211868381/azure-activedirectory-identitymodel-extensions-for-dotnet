@@ -25,11 +25,8 @@
 //
 //------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Xml;
-using static Microsoft.IdentityModel.Logging.LogHelper;
 
 namespace Microsoft.IdentityModel.Tokens.Xml
 {
@@ -74,24 +71,6 @@ namespace Microsoft.IdentityModel.Tokens.Xml
             }
 
             return stringBuilder.ToString();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="offset"></param>
-        /// <param name="count"></param>
-        internal static void ValidateBufferBounds(Array buffer, int offset, int count)
-        {
-            if (buffer == null)
-                throw LogArgumentNullException(nameof(buffer));
-
-            if (count < 0 || count > buffer.Length)
-                throw LogExceptionMessage(new ArgumentOutOfRangeException(nameof(count), FormatInvariant(LogMessages.IDX20001, 0, buffer.Length)));
-
-            if (offset < 0 || offset > buffer.Length - count)
-                throw LogExceptionMessage(new ArgumentOutOfRangeException(nameof(offset), FormatInvariant(LogMessages.IDX20001, 0,  buffer.Length - count)));
         }
     }
 }
