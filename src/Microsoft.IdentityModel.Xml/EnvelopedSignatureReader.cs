@@ -111,13 +111,13 @@ namespace Microsoft.IdentityModel.Xml
         }
 
         /// <summary>
-        /// Gets the <see cref="Xml.Signature"/> that was found inside the <see cref="XmlReader"/>.
+        /// Gets the <see cref="Xml.Signature"/> that was found inside the XML.
         /// </summary>
         /// <remarks><see cref="Xml.Signature"/> may be null.</remarks>
         public Signature Signature
         {
             get;
-            private set;
+            protected set;
         }
     }
 }
