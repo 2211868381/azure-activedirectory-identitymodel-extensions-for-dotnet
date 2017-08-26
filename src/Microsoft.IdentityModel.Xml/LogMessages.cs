@@ -35,7 +35,6 @@ namespace Microsoft.IdentityModel.Xml
     {
 #pragma warning disable 1591
         // XML reading
-        //internal const string IDX20001 = "IDX20001: The value of this argument must fall within the range {0} to {1}.";
         internal const string IDX21010 = "IDX21010: Unable to read XML. Expecting XmlReader to be at element: '{0}', found 'Empty Element'";
         internal const string IDX21011 = "IDX21011: Unable to read XML. Expecting XmlReader to be at ns.element: '{0}.{1}', found: '{2}.{3}'.";
         internal const string IDX21012 = "IDX21012: Unable to read XML. While reading '{0}', This node was not expected: '{1}'.";
@@ -84,6 +83,10 @@ namespace Microsoft.IdentityModel.Xml
         internal const string IDX21403 = "IDX21402: Unable to write XML. One of the values in Reference.Transforms is null or empty.";
         internal const string IDX21404 = "IDX21401: Unable to write XML. Signature.SignedInfo is null.";
         internal const string IDX21405 = "IDX21405: Unable to write XML. SignedInfo.Reference is null.";
+
+        // XML validation
+        internal const string IDX21500 = "IDX21500: xsi:type attribute was not found. Expected: '{0}':'{1}'."
+        internal const string IDX21501 = "IDX21501: xsi:type attribute was did not match. Expected: '{0}':'{1}', Found: '{2}':'{3}'.";
 #pragma warning restore 1591
     }
 }
