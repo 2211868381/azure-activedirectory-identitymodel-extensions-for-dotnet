@@ -85,7 +85,7 @@ namespace Microsoft.IdentityModel.Xml
         internal const string IDX21405 = "IDX21405: Unable to write XML. SignedInfo.Reference is null.";
 
         // XML validation
-        internal const string IDX21500 = "IDX21500: xsi:type attribute was not found. Expected: '{0}':'{1}'."
+        internal const string IDX21500 = "IDX21500: xsi:type attribute was not found. Expected: '{0}':'{1}'.";
         internal const string IDX21501 = "IDX21501: xsi:type attribute was did not match. Expected: '{0}':'{1}', Found: '{2}':'{3}'.";
 #pragma warning restore 1591
     }
